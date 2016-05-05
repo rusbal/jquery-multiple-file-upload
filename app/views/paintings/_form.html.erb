@@ -1,0 +1,16 @@
+<%= render 'layouts/errors', obj: @painting %>
+
+<%= form_for @painting, html: { multipart: true } do |f| %>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.file_field :image %>
+  </p>
+
+  <p>
+    <%= f.submit class: "btn btn-sm btn-primary" %>
+  </p>
+<% end %>
