@@ -7,7 +7,7 @@
 
         <div class="text-center">
           <p>
-            <strong><%= painting.name %><br>
+            <strong title="<%= painting.name %>"><%= truncate(painting.name, length: 30) %></strong><br>
           </p>
           <div class="btn-group">
             <%= link_to "edit", edit_painting_path(painting), class: "btn btn-sm btn-default" %>
