@@ -1,2 +1,4 @@
 tmp
 public/uploads
+*sqlite3
+log
