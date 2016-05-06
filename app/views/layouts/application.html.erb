@@ -36,7 +36,7 @@
                     <%= form_for Painting.new, html: { multipart: true, class: "navbar-form navbar-right" } do |f| %>
                       <div class="form-group">
                           <%= f.file_field :image, :multiple => true, name: "painting[image]", class: "hidden" %>
-                          <%= f.label :image, "Upload file here", class: "btn btn-primary" %>
+                          <%= f.label :image, "Select multiple files", class: "btn btn-primary" %>
                       </div>
                     <% end %>
                   </li>
@@ -50,17 +50,17 @@
     </nav>
 
     <div class="container">
-      <p>Drag and drop multiple images anywhere on this page and all images will be uploaded automatically.</p>
+      <div id="dropzone" class="well well-lg" style="border: 2px dashed">
+        <h2>Drag and drop multiple images here.</h2>
+      </div>
     </div>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" id="main">
 
-        <div class="row">
-          <% flash.each do |key, msg| %>
-            <div class="alert alert-<%= key == "notice" ? "success" : key %>" role="alert"><%= msg %></div>
-          <% end %>
-        </div>
+        <% flash.each do |key, msg| %>
+          <div class="alert alert-<%= key == "notice" ? "success" : key %>" role="alert"><%= msg %></div>
+        <% end %>
 
         <%= yield %>
 

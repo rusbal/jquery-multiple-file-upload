@@ -2,4 +2,5 @@
   alert("Failed to upload painting.");
 <% else %>
   $('#paintings').append("<%= j render(@painting) %>");
+  alert_batch();
 <% end %>

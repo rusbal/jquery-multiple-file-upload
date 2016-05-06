@@ -13,7 +13,7 @@ class PaintingsController < ApplicationController
     respond_to do |format|
       if @painting.save
         format.html { redirect_to root_path, notice: 'Painting was successfully created.' }
-        format.js
+        format.js { @success_message = "Ok" }
       else
         format.html { render 'new' }
         format.js

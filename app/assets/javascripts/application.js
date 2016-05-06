@@ -15,3 +15,11 @@
 //= require jquery-fileupload/basic
 //= require turbolinks
 //= require_tree .
+
+var upload_count = 0;
+
+function alert_batch() {
+  $('.alert').remove();
+  upload_count += 1;
+  $('#main').prepend('<div class="alert alert-success" role="alert">Successfully uploaded ' + upload_count.toString() + ' painting' + (upload_count > 1 ? 's' : '') + '.</div>');
+}
