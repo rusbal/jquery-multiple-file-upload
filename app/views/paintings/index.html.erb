@@ -2,24 +2,19 @@
     <h1 class="page-header">Paintings</h1>
 </div>
 
-<% @paintings.each do |painting| %>
+<div id="paintings" class="row">
+  <% @paintings.each do |painting| %>
+    <%= render painting %>
+  <% end %>
+</div>
 
-  <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-
-      <div class="thumbnail">
-        <%= image_tag painting.image_url(:thumb).to_s %>
-      </div>
-
-      <div class="text-center">
-        <p>
-          <strong><%= painting.name %><br>
-        </p>
-        <div class="btn-group">
-          <%= link_to "edit", edit_painting_path(painting), class: "btn btn-sm btn-default" %>
-          <%= link_to "remove", painting_path(painting), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-default" %>
-        </div>
-      </div>
-  </div>
-
+<% if false %>
+<div id="uploader-fixed">
+  <%= form_for Painting.new, html: { multipart: true } do |f| %>
+    <p>
+      <%= f.label :image, "Upload images" %>
+      <%= f.file_field :image, :multiple => true, name: "painting[image]" %>
+    </p>
+  <% end %>
+</div>
 <% end %>
-

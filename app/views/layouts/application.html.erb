@@ -30,14 +30,28 @@
             <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
-                    <li><%= link_to "New Painting", new_painting_path %></li>
+                  <li><%= link_to "Delete All", delete_all_path, method: :delete, data: { confirm: "You are going to delete all paintings!\n\nAre you really sure?" } %></li>
+
+                  <li>
+                    <%= form_for Painting.new, html: { multipart: true, class: "navbar-form navbar-right" } do |f| %>
+                      <div class="form-group">
+                          <%= f.file_field :image, :multiple => true, name: "painting[image]", class: "hidden" %>
+                          <%= f.label :image, "Upload file here", class: "btn btn-primary" %>
+                      </div>
+                    <% end %>
+                  </li>
 
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
+
         </div>
         <!-- /.container -->
     </nav>
+
+    <div class="container">
+      <p>Drag and drop multiple images anywhere in this page and all images will be uploaded automatically.</p>
+    </div>
 
     <!-- Page Content -->
     <div class="container">
@@ -48,9 +62,7 @@
           <% end %>
         </div>
 
-        <div class="row">
-            <%= yield %>
-        </div>
+        <%= yield %>
 
         <hr>
 

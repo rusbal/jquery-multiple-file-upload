@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   resources :paintings
 
+  delete 'paintings/all', :as => 'delete_all'
+
 end

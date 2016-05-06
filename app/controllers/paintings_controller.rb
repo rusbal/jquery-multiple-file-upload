@@ -1,5 +1,5 @@
 class PaintingsController < ApplicationController
-  before_action :set_painting, only: [:edit, :update, :destroy]
+  before_action :set_painting, only: [:edit, :update]
   before_action :build_painting, only: [:new, :create, :edit, :update]
 
   def index
@@ -10,10 +10,14 @@ class PaintingsController < ApplicationController
   end
 
   def create
-    if @painting.save
-      redirect_to root_path, :notice => "New painting was successfully saved."
-    else
-      render 'new'
+    respond_to do |format|
+      if @painting.save
+        format.html { redirect_to root_path, notice: 'Painting was successfully created.' }
+        format.js
+      else
+        format.html { render 'new' }
+        format.js
+      end
     end
   end
 
@@ -29,13 +33,29 @@ class PaintingsController < ApplicationController
   end
 
   def destroy
+    if params[:id] == "all"
+      destroy_all
+    else
+      destroy_one
+    end
+  end
+
+  private
+
+  def destroy_one
+    set_painting
     if @painting.destroy
       flash[:notice] = "Painting was deleted."
     end
     redirect_to root_path
   end
 
-  private
+  def destroy_all
+    if Painting.delete_all
+      flash[:notice] = "All paintings was deleted."
+    end
+    redirect_to root_path
+  end
 
   def set_painting
     @painting = Painting.find(params[:id])

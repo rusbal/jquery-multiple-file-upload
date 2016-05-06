@@ -22,4 +22,5 @@ end
 
 gem 'rmagick'
 gem 'carrierwave'
+gem 'jquery-fileupload-rails'
 
