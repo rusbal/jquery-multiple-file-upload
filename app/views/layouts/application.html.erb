@@ -33,12 +33,9 @@
                   <li><%= link_to "Delete All", delete_all_path, method: :delete, data: { confirm: "You are going to delete all paintings!\n\nAre you really sure?" } %></li>
 
                   <li>
-                    <%= form_for Painting.new, html: { multipart: true, class: "navbar-form navbar-right" } do |f| %>
-                      <div class="form-group">
-                          <%= f.file_field :image, :multiple => true, name: "painting[image]", class: "hidden" %>
-                          <%= f.label :image, "Select multiple files", class: "btn btn-primary" %>
+                      <div class="navbar-form navbar-right">
+                          <%= link_to "Select multiple files", "#", id: "label_upload", class: "btn btn-primary" %>
                       </div>
-                    <% end %>
                   </li>
 
                 </ul>
@@ -53,6 +50,20 @@
       <div id="dropzone" class="well well-lg text-center" style="border: 2px dashed green">
         <h3>Drag and drop multiple images here.</h3>
       </div>
+
+      <%= form_for Painting.new, html: { multipart: true } do |f| %>
+        <%= f.file_field :image, :multiple => true, name: "painting[image]", class: "hidden" %>
+      <% end %>
+
+      <script id="template-upload" type="text/x-tmpl">
+        <div class="upload">
+          {%=o.name%}
+          <div class="progress">
+            <div class="bar" style="width: 0%"></div>
+          </div>
+        </div>
+      </script>
+
     </div>
 
     <!-- Page Content -->

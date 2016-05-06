@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require turbolinks
 //= require_tree .
 
@@ -23,3 +24,10 @@ function alert_batch() {
   upload_count += 1;
   $('#main').prepend('<div class="alert alert-success" role="alert">Successfully uploaded ' + upload_count.toString() + ' painting' + (upload_count > 1 ? 's' : '') + '.</div>');
 }
+
+$(function(){
+  $('#label_upload').click(function(e){
+    e.preventDefault();
+    $('form#new_painting input[type=file]').click();
+  });
+});
